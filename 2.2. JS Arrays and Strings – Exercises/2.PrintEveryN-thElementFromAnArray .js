@@ -1,26 +1,18 @@
-function solve(array, step) {
+function solve(...array) {
+    let step = array.pop();
     let result = [];
 
-    for (let i = 0; i < array.length; i++) {
-        if (i % step === 0) {
-            result.push(array[i]);
-        }
+    for (let i = 0; i < array.length; i += step) {
+        let n = array[i];
+        result.push(n);
     }
 
-    console.log(result)
+    return result;
 }
 
-let array = ['5', '20', '31', '4', '20'];
-let step = 2;
 
-solve(array, step);
+console.log(solve('5', '20', '31', '4', '20', 2));
 
-array = ['dsa', 'asd', 'test', 'tset'];
-step = 2;
+console.log(solve('dsa', 'asd', 'test', 'tset', 2));
 
-solve(array, step);
-
-array = ['1', '2', '3', '4', '5'];
-step = 6;
-
-solve(array, step);
+console.log(solve('1', '2', '3', '4', '5', 6));

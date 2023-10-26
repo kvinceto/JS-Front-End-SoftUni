@@ -1,6 +1,4 @@
-function printAndSum(input) {
-    let num1 = input[0];
-    let num2 = input[1];
+function printAndSum(num1, num2) {
 
     let result = 0;
     let nums = [];
@@ -16,12 +14,12 @@ function printAndSum(input) {
 
 let input = [5, 10];
 
-printAndSum(input);
+printAndSum(inpu[0], input[1]);
 
 input = [0, 26];
 
-printAndSum(input);
+printAndSum(inpu[0], input[1]);
 
 input = [50, 60];
 
-printAndSum(input);
+printAndSum(inpu[0], input[1]);

@@ -1,4 +1,4 @@
-function sort(array) {
+function sort(...array) {
     let counter = 0;
     array.sort();
     for (const name of array) {
@@ -7,6 +7,4 @@ function sort(array) {
     }
 }
 
-let array = ["John", "Bob", "Christina", "Ema"];
-
-sort(array);
+sort("John", "Bob", "Christina", "Ema");

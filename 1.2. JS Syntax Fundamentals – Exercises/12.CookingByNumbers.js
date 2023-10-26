@@ -1,4 +1,4 @@
-function solve(input, operations) {
+function solve(input, ...operations) {
     let n = parseInt(input);
 
     for (let i = 0; i < operations.length; i++) {
@@ -17,11 +17,9 @@ function solve(input, operations) {
 }
 
 let input = '32';
-let operations = ['chop', 'chop', 'chop', 'chop', 'chop'];
 
-solve(input, operations);
+solve(input, 'chop', 'chop', 'chop', 'chop', 'chop');
 
 input = '9';
-operations = ['dice', 'spice', 'chop', 'bake', 'fillet'];
 
-solve(input, operations);
+solve(input, 'dice', 'spice', 'chop', 'bake', 'fillet');
