@@ -1,58 +1,66 @@
-function passwordValidate(password) {
-    password = password.toString();
-    let hasLength;
-    let onlyLetterAndDigits;
-    let hasMinimum2Digits;
-    let digitsCount = 0;
+function validatePass(input) {
+    input = String(input);
+    let lengthMessage;
 
-    if (password.length >= 6 && password.length <= 10) {
-        hasLength = true;
-    }
-    else {
-        hasLength = false;
+    let invalidCount = 0;
+
+    if (input.length < 6 || input.length > 10) {
+        lengthMessage = 'Password must be between 6 and 10 characters';
+        isValid = false;
+        invalidCount++;
     }
 
-    for (let i = 0; i < password.length; i++) {
-        let char = password[i];
-        if (isNaN(char)) {
-            onlyLetterAndDigits = false;
-            break
+    let hasInvalidChar = false;
+    for (let i = 0; i < input.length; i++) {
+        let char = String(input[i]);
+        if (!(char.match(/[A-Z]/gm)) && !(char.match(/[a-z]/gm)) && !(char.match(/[0-9]/gm))) {
+            hasInvalidChar = true;
+            break;
         }
+    }
 
-        onlyLetterAndDigits = true;
-        if (char.test(/[0-9]/gm)) {
+    let charsMessage;
+    if (hasInvalidChar) {
+        charsMessage = 'Password must consist only of letters and digits';
+        invalidCount++;
+    }
+
+    let digitsCount = 0;
+    for (let i = 0; i < input.length; i++) {
+        let char = String(input[i]);
+        if (char.match(/[0-9]/gm)) {
             digitsCount++;
         }
     }
 
-    if (digitsCount >= 2) {
-        hasMinimum2Digits = true;
-    }
-    else {
-        hasMinimum2Digits = false;
+    let digitsMessage;
+    if (digitsCount < 2) {
+        digitsMessage = 'Password must have at least 2 digits';
+        invalidCount++;
     }
 
-    if (hasLength && onlyLetterAndDigits && hasMinimum2Digits) {
+    if (invalidCount === 0) {
         console.log('Password is valid');
     }
     else {
-        if (!hasLength) {
-            console.log('Password must be between 6 and 10 characters');
+        if (lengthMessage) {
+            console.log(lengthMessage);
         }
-        if (!onlyLetterAndDigits) {
-            console.log('Password must consist only of letters and digits');
+        if (charsMessage) {
+            console.log(charsMessage);
         }
-        if (!hasMinimum2Digits) {
-            console.log('Password must have at least 2 digits');
+        if (digitsMessage) {
+            console.log(digitsMessage);
         }
     }
+
 }
 
-let password = 'logIn';
-passwordValidate(password);
+let input = 'logIn';
+validatePass(input);
 
-password = 'MyPass123';
-passwordValidate(password);
+input = 'MyPass123';
+validatePass(input);
 
-password = 'Pa$s$s';
-passwordValidate(password);
+input = 'Pa$s$s';
+validatePass(input);
