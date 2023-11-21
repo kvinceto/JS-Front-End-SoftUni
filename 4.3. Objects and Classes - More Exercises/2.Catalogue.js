@@ -1,22 +1,25 @@
 function createCatalogue(input) {
     let map = new Map();
-
+    let set = new Set();
     input.forEach(element => {
         let [product, price] = element.split(' : ');
-        let data = {name: product, productPrice: price}
-        let letter = product.split('')[0];
-        if (!map.has(letter)) {
-            map.set(letter, [])
+        let char = product.charAt(0);
+        if (!map.has(char)) {
+            map.set(char, []);
+            set.add(char);
         }
 
-        let oldValue = map.get(letter);
-        let newValue = oldValue.push(data);
-        map.set(letter, newValue);
+        map.get(char).push(`${product}: ${price}`)
     });
 
-    map.forEach((value, key) => {
-        console.log(key);
-        let sorted = value.sort();
+    let arr = Array.from(set.keys()).sort();
+
+    arr.forEach(e => {
+        let data = map.get(e).sort();
+        console.log(e);
+        data.forEach(d =>{
+            console.log(`  ${d}`);
+        })
     })
 }
 
